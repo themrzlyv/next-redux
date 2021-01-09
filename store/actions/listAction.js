@@ -6,3 +6,10 @@ export const addmylist = (user) =>  dispatch => {
         payload: user
     })
 }
+
+export const deletemylist = (user) => dispatch => {
+    dispatch({
+        type: types.DELETE_MYLIST,
+        payload: user
+    })
+}

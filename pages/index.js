@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addmylist } from '../store/actions/listAction'
+import { addmylist, deletemylist } from '../store/actions/listAction'
 import { fetchposts, fetchusers } from '../store/actions/postAction'
 
 import styles from '../styles/Home.module.css'
@@ -29,14 +29,16 @@ export default function Home() {
 
       {
         mylist ? 
-            <li>{mylist.length}</li>
+            mylist.map(el =>
+               <button onClick={()=> dispatch(deletemylist(el))} key={el.id}>{el.name}</button>
+            )
           :
           ''
       }
 
           {
             posts ? posts.map(el => 
-              <li>{el.title}</li>
+              <li key={el.id}>{el.title}</li>
             )
             :
             ''
